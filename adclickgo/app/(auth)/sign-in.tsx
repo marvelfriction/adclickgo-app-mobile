@@ -18,7 +18,6 @@ import { Link, router } from "expo-router";
 
 const SignIn = () => {
   const [form, setForm] = useState({
-    name:"",
     email:"",
     password:"",
   })
@@ -57,8 +56,10 @@ const SignIn = () => {
               Username
             </Text>
             <TextInput
-              placeholder="Enter Username"
+              placeholder="Enter Username/Email"
               placeholderTextColor="#aaa"
+              value={form.email}
+              onChangeText={(value) => setForm({ ...form, email: value })}
               style={{
                 width: 360,
                 height: 60,
@@ -86,9 +87,11 @@ const SignIn = () => {
               Password
             </Text>
             <TextInput
-              placeholder="Enter Username"
+              placeholder="Enter Password"
               secureTextEntry={true}
               placeholderTextColor="#aaa"
+              value={form.password}
+              onChangeText={(value) => setForm({ ...form, name: password })}
               style={{
                 width: 360,
                 height: 60,

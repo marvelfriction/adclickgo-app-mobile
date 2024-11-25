@@ -1,7 +1,9 @@
 import arrowDown from "@/assets/icons/chevron-down.png";
 import welcomeBack from "@/assets/icons/welcome-back.png";
 import backArrow from "@/assets/icons/back.png";
-import womanSmile from "@/assets/images/woman-smile.png";
+import womanSmile from "@/assets/images/woman-smile2.png";
+import mail from "@/assets/icons/mail.png";
+import congratsSuccess from "@/assets/icons/congrats-icon.png"
 
 export const images = {
   womanSmile,
@@ -11,6 +13,8 @@ export const icons = {
   arrowDown,
   welcomeBack,
   backArrow,
+  mail,
+  congratsSuccess,
   // arrowDown
 };
 

@@ -10,7 +10,8 @@ import {
     Keyboard,
     ScrollView
 } from "react-native";
-import { Picker } from "@react-native-picker/picker";
+// import { Picker } from "@react-native-picker/picker";
+import RNPickerSelect from 'react-native-picker-select';
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Link, router } from "expo-router";
 
@@ -26,7 +27,7 @@ const SignUp = () => {
         password: "",
     });
 
-    const handleInputChange = (name, value) => {
+    const handleInputChange = (name:string, value:string) => {
         setForm({ ...form, [name]: value });
     };
 
@@ -53,9 +54,10 @@ const SignUp = () => {
                 backgroundColor: "#fff",
                 justifyContent: "center",
                 alignItems: "center",
+                height:"100%"
             }}
         >
-            <ScrollView style={{ width: "100%" }}>
+            <ScrollView style={{ width: "100%", height:"100%" }}>
                 <KeyboardAvoidingView
                     behavior={Platform.OS === "ios" ? "padding" : "height"}
                     style={{ flex: 1, width: "100%" }}
@@ -63,7 +65,7 @@ const SignUp = () => {
                     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                         <View
                             style={{
-                                paddingHorizontal: "8%",
+                                paddingHorizontal: "6%",
                                 width: "100%",
                                 alignItems: "center",
                             }}
@@ -162,15 +164,16 @@ const SignUp = () => {
                                         borderColor: "#ddd",
                                         borderRadius: 8,
                                         backgroundColor: "#F8F8F8",
+                                        height:50,
                                     }}
                                 >
-                                    <Picker
-                                        selectedValue={form.gender}
-                                        onValueChange={(value) => handleInputChange("gender", value)}
-                                    >
-                                        <Picker.Item label="Male" value="Male" />
-                                        <Picker.Item label="Female" value="Female" />
-                                    </Picker>
+                                    <RNPickerSelect
+                                        onValueChange={(value) => console.log(value)}
+                                        items={[
+                                            { label: 'Male', value: 'Male' },
+                                            { label: 'Female', value: 'Male' },
+                                        ]}
+                                    />
                                 </View>
                             </View>
 
@@ -185,18 +188,18 @@ const SignUp = () => {
                                         borderColor: "#ddd",
                                         borderRadius: 8,
                                         backgroundColor: "#F8F8F8",
+                                        height:50,
                                     }}
                                 >
-                                    <Picker
-                                        selectedValue={form.country}
-                                        onValueChange={(value) => handleInputChange("country", value)}
-                                    >
-                                        <Picker.Item label="Turkey" value="Turkey" />
-                                        <Picker.Item label="Belgium" value="Belgium" />
-                                        <Picker.Item label="Nigeria" value="Nigeria" />
-                                        <Picker.Item label="Ghana" value="Ghana" />
-                                        <Picker.Item label="Kenya" value="Kenya" />
-                                    </Picker>
+                                    <RNPickerSelect
+                                        onValueChange={(value) => console.log(value)}
+                                        items={[
+                                            { label: 'Nigeria', value: 'nigeria' },
+                                            { label: 'Belgium', value: 'belgium' },
+                                            { label: 'United Kingdom', value: 'united kingdom' },
+                                            { label: 'Ghana', value: 'ghana' },
+                                        ]}
+                                    />
                                 </View>
                             </View>
 
@@ -296,8 +299,8 @@ const SignUp = () => {
                                     Have an account?{" "}
                                     <Text
                                         style={{
-                                            fontWeight: "bold",
                                             textDecorationLine: "underline",
+                                            color:"#69C52F"
                                         }}
                                     >
                                         Login Now

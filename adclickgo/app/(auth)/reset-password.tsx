@@ -10,10 +10,9 @@ import {
 } from "react-native";
 import { icons } from "@/constants";
 import { SafeAreaView } from "react-native-safe-area-context";
-// import CustomButton from "@/components/CustomButton";
 import { useRouter } from "expo-router";
 
-const ForgotPassword = () => {
+const ResetPassword = () => {
     const router = useRouter()
 
     return (
@@ -21,8 +20,7 @@ const ForgotPassword = () => {
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <KeyboardAvoidingView
                     behavior={Platform.OS === "ios" ? "padding" : "height"}
-                    style={{ alignItems: "center", justifyContent:"center", padding: "3%",
-                    }}
+                    style={{ alignItems: "center", justifyContent:"center", padding: "3%" }}
                 >
                     <View
                         style={{
@@ -51,7 +49,7 @@ const ForgotPassword = () => {
                             >
                                 <Image
                                     source={icons.backArrow}
-                                    style={{ width: 24, height: 24 }}
+                                    style={{ width: 24 , height: 24}}
                                     resizeMode="contain"
                                 />
                             </TouchableOpacity>
@@ -65,26 +63,26 @@ const ForgotPassword = () => {
                                     fontWeight: "bold"
                                 }}
                             >
-                                Forgot Password
+                                Reset Password
                             </Text>
                         </View>
 
                         <Text
                             style={{
                                 color: "#38889D",
-                                fontSize: 20,
+                                fontSize: 23,
                                 lineHeight: 30,
                                 textAlign: "center",
                             }}>
-                            It happens... Please enter your email to reset the password.
+                            Kindly enter your new password below.
                         </Text>
                     </View>
-                    <View style={{ marginVertical: 50, width: "100%", alignItems:"center", paddingHorizontal:"4%" }}>
-                        <Text style={{ alignSelf:"flex-start", fontSize: 20, color: "#01796F", marginBottom: 8 }}>
-                            Email Address/Phone No.
+                    <View style={{ marginTop: 50, width: "100%", alignItems:"center", paddingHorizontal:"4%" }}>
+                        <Text style={{ alignSelf:"flex-start", fontSize: 20, color: "#01796F", marginBottom: 4 }}>
+                            Enter New Password
                         </Text>
                         <TextInput
-                            placeholder="Enter your email address"
+                            placeholder="Enter password"
                             placeholderTextColor="#aaa"
                             style={{
                                 width: "100%",
@@ -100,8 +98,29 @@ const ForgotPassword = () => {
                             }}
                         />
                     </View>
+                    <View style={{ marginTop:20, marginBottom: 50, width: "100%", alignItems:"center", paddingHorizontal:"4%" }}>
+                        <Text style={{ alignSelf:"flex-start", fontSize: 20, color: "#01796F", marginBottom: 4 }}>
+                            Confirm New Password
+                        </Text>
+                        <TextInput
+                            placeholder="Confirm password"
+                            placeholderTextColor="#aaa"
+                            style={{
+                                width: "100%",
+                                padding: 18,
+                                borderWidth: 1,
+                                borderColor: "#ddd",
+                                borderRadius: 10,
+                                backgroundColor: "#F8F8F8",
+                                fontSize: 16,
+                                shadowOffset: { width: 0, height: 2 },
+                                shadowOpacity: 0.1,
+                                elevation: 3,
+                            }}
+                        />
+                    </View>
+
                     <TouchableOpacity
-                        onPress={()=> {router.push("/(auth)/reset-password")}}
                         style={{
                             marginTop: 40,
                             width: "93%",
@@ -127,4 +146,4 @@ const ForgotPassword = () => {
         </SafeAreaView>
     );
 };
-export default ForgotPassword;
+export default ResetPassword;

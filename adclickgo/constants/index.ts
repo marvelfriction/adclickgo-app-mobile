@@ -4,9 +4,30 @@ import backArrow from "@/assets/icons/back.png";
 import womanSmile from "@/assets/images/woman-smile2.png";
 import mail from "@/assets/icons/mail.png";
 import congratsSuccess from "@/assets/icons/congrats-icon.png"
+import tabHomeIcon from "@/assets/icons/nav-home-icon.png";
+import tabWalletIcon from "@/assets/icons/nav-wallet-2.png";
+import tabPrizesIcon from "@/assets/icons/nav-prizes-icon.png";
+import tabTeamIcon from "@/assets/icons/nav-team-icon.png";
+import dashboardImage0 from "@/assets/images/dashboard-image0.png";
+import dashboardImage1 from "@/assets/images/dashboard-image1.png"
+import arrowsMoveIcon from "@/assets/icons/arrows-move-icon.png";
+import coinIcon from "@/assets/icons/coin.png";
+import hurricaneIcon from "@/assets/icons/hurricane.png";
+import menuIcon from "@/assets/icons/menu-icon.png";
+import peopleIcon from "@/assets/icons/people-icon.png";
+import bullsEyeIcon from "@/assets/icons/bullseye.png";
+import bankIcon from "@/assets/icons/bank.png";
+import memberIcon from "@/assets/icons/person-workspace.png";
+import withdrawIcon from "@/assets/icons/withdraw-icon.png";
+import eyeFillIcon from "@/assets/icons/eyefill.png";
+import debitIcon from "@/assets/icons/debit-icon.png";
+import creditIcon from "@/assets/icons/credit-icon.png";
+
 
 export const images = {
   womanSmile,
+  dashboardImage0,
+  dashboardImage1
 };
 
 export const icons = {
@@ -15,6 +36,22 @@ export const icons = {
   backArrow,
   mail,
   congratsSuccess,
+  tabHomeIcon,
+  tabWalletIcon,
+  tabPrizesIcon,
+  tabTeamIcon,
+  arrowsMoveIcon,
+  coinIcon,
+  hurricaneIcon,
+  menuIcon,
+  peopleIcon,
+  bullsEyeIcon,
+  bankIcon,
+  memberIcon,
+  withdrawIcon,
+  eyeFillIcon,
+  debitIcon,
+  creditIcon,
   // arrowDown
 };
 

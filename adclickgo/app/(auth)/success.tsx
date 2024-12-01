@@ -50,7 +50,7 @@ const SuccessPage = () => {
 
             {/* Confirm Button */}
             <TouchableOpacity
-                onPress={() => router.push("/(root)/home")}
+                onPress={() => router.push("/(root)/(tabs)/home")}
                 style={{
                     width: "100%",
                     paddingVertical: 15,

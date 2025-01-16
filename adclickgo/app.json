@@ -4,7 +4,7 @@
     "slug": "adclickgo",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/adclickgo-logo.png",
+    "icon": "./assets/images/adclickgo-3d-logo.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "splash": {
@@ -19,7 +19,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adclickgo-logo.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "adclickgo.mobile"
     },
     "web": {
       "bundler": "metro",
@@ -31,6 +32,14 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "eab15b3a-6874-4e1e-98bd-d8b22aea1a37"
+      }
     }
   }
 }

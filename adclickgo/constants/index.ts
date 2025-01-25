@@ -22,12 +22,15 @@ import withdrawIcon from "@/assets/icons/withdraw-icon.png";
 import eyeFillIcon from "@/assets/icons/eyefill.png";
 import debitIcon from "@/assets/icons/debit-icon.png";
 import creditIcon from "@/assets/icons/credit-icon.png";
-
+import adclickgoLogo from "@/assets/icons/adclickgo-3d-logo.png";
+import settingsIcon from "@/assets/icons/settings-icon.png";
+import kycVerifiedBro from "@/assets/images/Verified-bro.png"
 
 export const images = {
   womanSmile,
   dashboardImage0,
-  dashboardImage1
+  dashboardImage1,
+  kycVerifiedBro
 };
 
 export const icons = {
@@ -52,6 +55,8 @@ export const icons = {
   eyeFillIcon,
   debitIcon,
   creditIcon,
+  adclickgoLogo,
+  settingsIcon,
   // arrowDown
 };
 

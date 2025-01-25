@@ -2,9 +2,10 @@ import { Stack } from "expo-router";
 
 const Layout = () => {
     return (
-        <Stack>
-            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        </Stack>
+      <Stack>
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="blanktest" options={{ headerShown: false }} />
+      </Stack>
     );
 };
 export default Layout;

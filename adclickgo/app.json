@@ -4,7 +4,7 @@
     "slug": "adclickgo",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/adclickgo-3d-logo.png",
+    "icon": "./assets/icons/adclickgo-3d-logo.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "splash": {
@@ -13,22 +13,24 @@
       "backgroundColor": "#69C52F"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.marvelfriction.adclickgo"
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adclickgo-logo.png",
+        "foregroundImage": "./assets/icons/adclickgo-3d-logo.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "adclickgo.mobile"
+      "package": "com.marvelfriction.adclickgo"
     },
     "web": {
       "bundler": "metro",
       "output": "static",
-      "favicon": "./assets/images/adclickgo-logo.png"
+      "favicon": "./assets/icons/adclickgo-3d-logo.png"
     },
     "plugins": [
-      "expo-router"
+      "expo-router",
+      "expo-secure-store"
     ],
     "experiments": {
       "typedRoutes": true

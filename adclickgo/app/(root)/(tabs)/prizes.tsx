@@ -9,12 +9,7 @@ const Prizes = () => {
     ];
 
     return (
-        <SafeAreaView style={{ flex: 1, backgroundColor: "white", padding: 20 }}>
-            {/* Header */}
-            <View style={{ flexDirection: "row", justifyContent: "center", alignItems: "center", marginBottom: 20 }}>
-                <Text style={{ fontSize: 18, fontWeight: "bold", color: "#69C52F" }}>Prizes</Text>
-            </View>
-
+        <SafeAreaView style={{ flex: 1, backgroundColor: "white", paddingHorizontal: 20 }}>
             {/* Grid Section */}
             <View style={{ flex: 1, flexDirection: "row", flexWrap: "wrap", justifyContent: "space-between" }}>
                 {items.map((item) => (

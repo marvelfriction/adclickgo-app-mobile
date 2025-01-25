@@ -31,7 +31,7 @@ const Onboarding = () => (
           <Text style={{ textAlign:"center", fontFamily:"Jakarta-ExtraBold", fontSize:20, color: "white" }}>Get Started</Text>
       </TouchableOpacity>
 
-    <Link href="/sign-in" style={{ fontSize:20 }}>
+    <Link href="/sign-in" style={{ fontSize:20, paddingBottom:30 }}>
       <Text style={{ color:"white" }}>Have an account? </Text>
       <Text style={{ color:"green", textDecorationLine:"underline" }}>Log In</Text>
     </Link>

@@ -3,28 +3,23 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { icons } from "@/constants";
 
 const Wallet = () => {
-    const transactions = [
-        { id: 1, name: "Janet Doe", date: "13-11-2024", amount: "$4,500.00", status: "Success", type: "sent" },
-        { id: 2, name: "Janet Doe", date: "12-06-2024", amount: "$2,500.00", status: "Success", type: "received" },
-        { id: 3, name: "Janet Doe", date: "13-11-2024", amount: "$4,500.00", status: "Success", type: "sent" },
-        { id: 4, name: "Janet Doe", date: "12-06-2024", amount: "$2,500.00", status: "Success", type: "received" },
-        { id: 5, name: "Janet Doe", date: "13-11-2024", amount: "$4,500.00", status: "Success", type: "sent" },
-        { id: 6, name: "Janet Doe", date: "12-06-2024", amount: "$2,500.00", status: "Success", type: "received" },        { id: 3, name: "Janet Doe", date: "13-11-2024", amount: "$4,500.00", status: "Success", type: "sent" },
-        { id: 7, name: "Janet Doe", date: "12-06-2024", amount: "$2,500.00", status: "Success", type: "received" },        { id: 3, name: "Janet Doe", date: "13-11-2024", amount: "$4,500.00", status: "Success", type: "sent" },
-        { id: 8, name: "Janet Doe", date: "12-06-2024", amount: "$2,500.00", status: "Success", type: "received" },        { id: 3, name: "Janet Doe", date: "13-11-2024", amount: "$4,500.00", status: "Success", type: "sent" },
-        { id: 9, name: "Janet Doe", date: "12-06-2024", amount: "$2,500.00", status: "Success", type: "received" },        { id: 3, name: "Janet Doe", date: "13-11-2024", amount: "$4,500.00", status: "Success", type: "sent" },
-        { id: 10, name: "Janet Doe", date: "12-06-2024", amount: "$2,500.00", status: "Success", type: "received" },        { id: 3, name: "Janet Doe", date: "13-11-2024", amount: "$4,500.00", status: "Success", type: "sent" },
-        { id: 11, name: "Janet Doe", date: "12-06-2024", amount: "$2,500.00", status: "Success", type: "received" },        { id: 3, name: "Janet Doe", date: "13-11-2024", amount: "$4,500.00", status: "Success", type: "sent" },
-        { id: 12, name: "Janet Doe", date: "12-06-2024", amount: "$2,500.00", status: "Success", type: "received" },
-    ];
+const transactions = [
+    { id: "1", name: "Janet Doe", date: "13-11-2024", amount: "$4,500.00", status: "Success", type: "sent" },
+    { id: "2", name: "Janet Doe", date: "12-06-2024", amount: "$2,500.00", status: "Success", type: "received" },
+    { id: "3", name: "Janet Doe", date: "13-11-2024", amount: "$4,500.00", status: "Success", type: "sent" },
+    { id: "4", name: "Janet Doe", date: "12-06-2024", amount: "$2,500.00", status: "Success", type: "received" },
+    { id: "5", name: "Janet Doe", date: "13-11-2024", amount: "$4,500.00", status: "Success", type: "sent" },
+    { id: "6", name: "Janet Doe", date: "12-06-2024", amount: "$2,500.00", status: "Success", type: "received" },
+    { id: "7", name: "Janet Doe", date: "12-06-2024", amount: "$2,500.00", status: "Success", type: "received" },
+    { id: "8", name: "Janet Doe", date: "12-06-2024", amount: "$2,500.00", status: "Success", type: "received" },
+    { id: "9", name: "Janet Doe", date: "12-06-2024", amount: "$2,500.00", status: "Success", type: "received" },
+    { id: "10", name: "Janet Doe", date: "12-06-2024", amount: "$2,500.00", status: "Success", type: "received" },
+    { id: "11", name: "Janet Doe", date: "12-06-2024", amount: "$2,500.00", status: "Success", type: "received" },
+    { id: "12", name: "Janet Doe", date: "12-06-2024", amount: "$2,500.00", status: "Success", type: "received" },
+];
 
     return (
-        <SafeAreaView style={{ padding: 20 }}>
-            {/* Header */}
-            <View style={{ flexDirection: "row", justifyContent: "center", alignItems: "center", marginBottom: 20 }}>
-                <Text style={{ fontSize: 18, fontWeight: "bold", color: "#69C52F" }}>Wallet</Text>
-            </View>
-
+        <SafeAreaView style={{ paddingHorizontal: 15, flex: 1, backgroundColor: "white" }}>
             {/* Balance Section */}
             <View
                 style={{
@@ -66,19 +61,19 @@ const Wallet = () => {
                     <View style={{ backgroundColor:"#CBEABD", padding:12, borderRadius: 12 }}>
                         <Image source={icons.bankIcon} style={{ width: 30, height: 30 }} />
                     </View>
-                    <Text style={{ color: "#01796F", marginTop: 10, fontSize:"15" }}>To Balance</Text>
+                    <Text style={{ color: "#01796F", marginTop: 10, fontSize: 15 }}>To Balance</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={{ alignItems: "center" }}>
                     <View style={{ backgroundColor:"#CBEABD", padding:12, borderRadius: 12 }}>
                         <Image source={icons.memberIcon} style={{ width: 30, height: 30 }} />
                     </View>
-                    <Text style={{ color: "#01796F", marginTop: 10, fontSize:"15" }}>To Other Member</Text>
+                    <Text style={{ color: "#01796F", marginTop: 10, fontSize: 15 }}>To Other Member</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={{ alignItems: "center" }}>
                     <View style={{ backgroundColor:"#CBEABD", padding:12, borderRadius: 12 }}>
                         <Image source={icons.withdrawIcon} style={{ width: 30, height: 30 }} />
                     </View>
-                    <Text style={{ color: "#01796F", marginTop: 10, fontSize:"15" }}>Withdraw</Text>
+                    <Text style={{ color: "#01796F", marginTop: 10, fontSize: 15 }}>Withdraw</Text>
                 </TouchableOpacity>
             </View>
 

@@ -1,5 +1,7 @@
 import axios from "axios";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+// import * as SecureStore from "expo-secure-store";
+// import AsyncStorage from "@react-native-async-storage/async-storage";
+import { getToken } from "./serviceUtils";
 
 const axiosInstance = axios.create({
   baseURL: process.env.EXPO_PUBLIC_API_BASE_URL,
@@ -8,9 +10,10 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
   async (config) => {
-    const token = await AsyncStorage.getItem("token");
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
+    // const token = await AsyncStorage.getItem("token");
+    const authToken = await getToken();
+    if (authToken) {
+      config.headers.Authorization = `Bearer ${authToken}`;
     }
     return config;
   },

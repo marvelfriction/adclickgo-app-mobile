@@ -1,4 +1,5 @@
 import axiosInstance from "./axiosInstance";
+import { removeToken, storeToken } from "./serviceUtils";
 
 // API Functions
 const endpoints = {
@@ -16,23 +17,80 @@ const endpoints = {
   },
 };
 
-// Endpoint usages
+// ALL ENDPOINTS
+
+// Login
+
 export const login = async (
-  value: { username: string; password: string },
-  loginContext: (token: string) => void
+  values: { username: string; password: string },
 ) => {
-  const response = await endpoints.call("/auth/login", "post", value);
-  loginContext(response.data.token); // Call login from context
+  const response = await endpoints.call("/api/auth/login", "post", values);
+  storeToken(response.data.token);
   return response;
 };
 
-export const signup = (value: {
+// Register 
+export const signup = async (values: {
+  username: string;
+  first_name: string;
+  last_name: string;
+  gender: string;
+  sponsor: string;
+  phone: string;
+  country: string;
   email: string;
   password: string;
-  name: string;
-}) => endpoints.call("/auth/signup", "post", value);
+  password_confirmation: string;
+}) => {
+  try {
+    const response = await endpoints.call("/api/auth/register", "post", values);
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
 
-export const logout = async (logoutContext: () => void) => {
-  await endpoints.call("/auth/logout", "post");
-  logoutContext(); // Call logout from context
+// Logout
+export const logout = async () => {
+  try {
+    // Call logout API FIRST (while token is still available)
+    const response = await endpoints.call("/api/logout", "post");
+    // THEN remove the token from client
+    removeToken();
+    return response;
+  } catch (error) {
+    // Handle errors, but still remove the token locally
+    removeToken();
+    throw error;
+  }
+};
+
+//Verify Email
+export const verifyEmail = async (values: { code: string; email: string }) => {
+  try {
+    const response = await endpoints.call("/api/auth/verify-email", "post", values);
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
+// User details
+export const userDetails = async () => {
+  try {
+    const response = await endpoints.call("/api/user/details", "get");
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
+// User Dashboard
+export const userDashboard = async () => {
+  try {
+    const response = await endpoints.call("/api/user-dashboard", "get");
+    return response;
+  } catch (error) {
+    throw error;
+  }
 };

@@ -1,9 +1,10 @@
+import React, { useState } from "react";
 import { Tabs } from "expo-router";
 // import { SafeAreaView } from "react-native-safe-area-context"
 import { View, Image, ImageSourcePropType, TouchableOpacity, Text, StatusBar } from "react-native"
 import { icons } from "@/constants";
-// import { logout } from "@/services/endpoints";
 // import { ButtonProps } from "@/types/type";
+import Sidebar from "@/components/Sidebar";
 
 interface TabIconProps {
     source: ImageSourcePropType;
@@ -26,19 +27,24 @@ const TabIcon: React.FC<TabIconProps> = ({
     </View>
 )
 
-const HeaderTab = () => {
+interface HeaderTabProps {
+    toggleSidebar: () => void;
+}
+
+const HeaderTab: React.FC<HeaderTabProps> = ({ toggleSidebar }) => {
     return (
       <View
         style={{
           position: "relative",
           top: 20,
           height: 15,
-          zIndex: 1000,
+          // flex: 1,
+          zIndex: 100,
           paddingHorizontal:15,
           marginTop: 19,
           marginBottom: 30,
         }}>
-        <StatusBar barStyle="dark-content" backgroundColor="white" translucent={true} />
+        <StatusBar barStyle="dark-content" translucent={true} />
         <View
           style={{
             flexDirection: "row",
@@ -48,7 +54,7 @@ const HeaderTab = () => {
             backgroundColor: "white",
 
           }}>
-          <TouchableOpacity style={{ flex:1, flexDirection:"row", gap:6, backgroundColor:"#E1E9E7", padding:8, marginRight:170, borderRadius:10, alignItems:"center" }}>
+          <TouchableOpacity onPress={toggleSidebar} style={{ flex:1, flexDirection:"row", gap:6, backgroundColor:"#E1E9E7", padding:8, marginRight:170, borderRadius:10, alignItems:"center" }}>
             <Image source={icons.menuIcon} style={{ width: 24, height: 24 }} />
             <Text
               style={{ fontSize: 18, fontWeight: "bold", color: "#69C52F" }}>
@@ -68,10 +74,19 @@ const HeaderTab = () => {
 }
 
 const Layout = () => {
+    const [isSidebarOpen, setSidebarOpen] = useState(false);
+    const toggleSidebar = () => {
+      setSidebarOpen((prev) => !prev);
+    };
+
     return (
       <View style={{ flex: 1, backgroundColor: "white" }}>
         {/* Fixed Header */}
-        <HeaderTab />
+        <HeaderTab toggleSidebar={toggleSidebar} />
+
+        {/* Sidebar */}
+        {isSidebarOpen && <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />}
+
         {/* Tab Navigation */}
         <Tabs
           initialRouteName="home"

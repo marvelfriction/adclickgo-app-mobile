@@ -39,19 +39,19 @@ const ResetPassword = () => {
                         >
                             {/* Back Button */}
                             <TouchableOpacity
-                                onPress={() => {router.back()}}
-                                style={{
-                                    width: 10,
-                                    justifyContent: "center",
-                                    alignItems: "center",
-                                    marginRight: 10,
-                                }}
-                            >
-                                <Image
-                                    source={icons.backArrow}
-                                    style={{ width: 24 , height: 24}}
-                                    resizeMode="contain"
-                                />
+                            onPress={() => {
+                                router.back();
+                            }}
+                            style={{
+                                justifyContent: "center",
+                                alignItems: "center",
+                                marginRight: 10,
+                            }}>
+                            <Image
+                                source={icons.backArrow}
+                                style={{ width: 24, height: 24 }}
+                                resizeMode="contain"
+                            />
                             </TouchableOpacity>
 
                             {/* Header Text */}
@@ -59,11 +59,10 @@ const ResetPassword = () => {
                                 style={{
                                     fontSize: 18,
                                     color: "#38889D",
-                                    marginLeft: 20,
-                                    fontWeight: "bold"
-                                }}
-                            >
-                                Reset Password
+                                    // marginLeft: 0,
+                                    fontWeight: "bold",
+                                }}>
+                                Forgot Password
                             </Text>
                         </View>
 
@@ -86,6 +85,7 @@ const ResetPassword = () => {
                             placeholderTextColor="#aaa"
                             style={{
                                 width: "100%",
+                                
                                 padding: 18,
                                 borderWidth: 1,
                                 borderColor: "#ddd",

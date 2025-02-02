@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -14,12 +14,14 @@ import { icons } from "@/constants";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useRouter, useLocalSearchParams } from "expo-router";
 import { OtpInput } from "react-native-otp-entry";
-import { verifyEmail } from "@/services/endpoints";
+import { sendEmailVerificationOtp, verifyEmail } from "@/services/endpoints";
 
 const EmailVerification = () => {
   const router = useRouter();
   const [otp, setOtp] = useState("");
   const { email } = useLocalSearchParams();
+  const [timeRemaining, setTimeRemaining] = useState(30);
+  const [isResendDisabled, setIsResendDisabled] = useState(true);
 
   // Handle OTP Change
   const handleOtpChange = (text: string) => {
@@ -31,22 +33,62 @@ const EmailVerification = () => {
     console.log(`OTP is ${text}`);
   };
 
-  const handleConfirm = async() => {
+  const handleSendEmailOtp = async () => {
+    try {
+      const response = await sendEmailVerificationOtp({ email: `${email}` });
+      console.log(response);
+      setTimeRemaining(30); // Reset the timer
+      setIsResendDisabled(true); // Disable the Resend button again
+    } catch (error) {
+      console.log(error);
+      alert(error);
+    }
+  };
+
+  const handleConfirm = async () => {
     if (otp.length === 6) {
-        try {
-            const response = await verifyEmail({ code: otp, email:`${email}` });
-            if (response.success === true) {
-                router.replace("/(auth)/success");
-                console.log(response.message)
-            }
-        } catch (error) {
-            console.error("Verify Email Error:", error);
-            alert(error);
+      try {
+        const response = await verifyEmail({ code: otp, email: `${email}` });
+        if (response.success === true) {
+          router.replace("/(auth)/success");
+          console.log(response.message);
         }
+      } catch (error) {
+        console.error("Verify Email Error:", error);
+        alert(error);
+      }
     } else {
-      console.warn("Please complete the OTP input!");
+      // console.warn("Please complete the OTP input!");
       alert("Please complete the OTP input!");
     }
+  };
+
+  // Countdown timer logic
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTimeRemaining((prevTime) => {
+        if (prevTime <= 0) {
+          clearInterval(interval); // Stop the timer when it reaches 0
+          setIsResendDisabled(false); // Enable the Resend button
+          return 0;
+        }
+        return prevTime - 1; // Decrement the timer by 1 second
+      });
+    }, 1000); // Update every second
+
+    // Cleanup the interval on component unmount
+    return () => clearInterval(interval);
+  }, []);
+
+  // Format the time into MM:SS
+  const formatTime = (timeInSeconds: any) => {
+    const minutes = Math.floor(timeInSeconds / 60);
+    const seconds = timeInSeconds % 60;
+
+    return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(
+      2,
+      "0"
+    )}`;
   };
 
   return (
@@ -111,7 +153,7 @@ const EmailVerification = () => {
               </Text>
               <Text
                 style={{
-                  fontSize: 14,
+                  fontSize: 18,
                   color: "#38889D",
                   textAlign: "center",
                   marginBottom: 30,
@@ -144,22 +186,39 @@ const EmailVerification = () => {
               <View style={{ marginTop: 20, flexDirection: "row" }}>
                 <Text
                   style={{
-                    fontSize: 16,
+                    fontSize: 18,
                     color: "#38889D",
                     textAlign: "center",
                   }}>
                   Didn't get a mail?{" "}
                 </Text>
 
-                <TouchableOpacity onPress={() => handleConfirm}>
+                <TouchableOpacity
+                  onPress={() => handleSendEmailOtp}
+                  disabled={isResendDisabled} // Disable the button when the timer is active
+                  style={{ opacity: isResendDisabled ? 0.5 : 1 }}>
                   <Text
                     style={{
                       color: "#69C52F",
-                      fontSize: 16,
+                      fontSize: 18,
                     }}>
                     Resend
                   </Text>
                 </TouchableOpacity>
+              </View>
+              
+              {/* Display the countdown timer */}
+              <View>
+                {isResendDisabled && (
+                  <Text
+                    style={{
+                      fontSize: 18,
+                      color: "#38889D",
+                      marginLeft: 10,
+                    }}>
+                    ({formatTime(timeRemaining)})
+                  </Text>
+                )}
               </View>
 
               {/* Confirm Button */}

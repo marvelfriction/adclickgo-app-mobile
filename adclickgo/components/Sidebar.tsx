@@ -23,8 +23,10 @@ const Sidebar: React.FC<SidebarProps> = ({ toggleSidebar }) => {
       try {
         const response = await logout();
         console.log("Logout Info:", response);
-        removeToken();        
-        router.replace("/(auth)/sign-in");
+        if (response.success === true) {
+          removeToken();        
+          router.replace("/(auth)/sign-in");
+        }
       } catch (error: string | any) {
         console.error("Logout Error:", error);
         alert(error);

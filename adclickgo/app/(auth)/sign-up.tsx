@@ -41,7 +41,7 @@ const SignUp = () => {
   };
 
   const handleSubmit = async () => {
-    // Pass the email as a parameter
+    // // Pass the email as a parameter
     // router.push({
     //   pathname: "/(auth)/email-verification",
     //   params: { email: form.email },
@@ -69,7 +69,7 @@ const SignUp = () => {
         console.error("Signup Error:", error);
         // alert(error.errors[0].message);
         // alert("An error occurred during signup. Please try again.");
-        alert(error);
+        alert(error.error);
     }
   };
 
@@ -226,11 +226,12 @@ const SignUp = () => {
                     onValueChange={(value) =>
                       handleInputChange("country", value)
                     }
-                    items={CountryData.map((country) =>
+                    items={CountryData.map((country, index) =>
                       country.dial_code
                         ? {
                             label: `${country.name} (${country.dial_code})`,
                             value: country.dial_code,
+                            id: index
                           }
                         : { label: country.name, value: country.dial_code }
                     )}

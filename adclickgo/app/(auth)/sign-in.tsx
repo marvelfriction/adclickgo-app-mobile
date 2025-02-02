@@ -30,7 +30,6 @@ const SignIn = () => {
   });
 
   const handleLogin = async () => {
-    // removeToken();
     try {
       const response = await login(form);
       console.log("Login Successful:", response);
@@ -42,7 +41,7 @@ const SignIn = () => {
       console.error("Login Error:", error);
       alert(error);
     }
-  };
+  }
 
   return (
     <SafeAreaView style={{ flex: 1 }}>

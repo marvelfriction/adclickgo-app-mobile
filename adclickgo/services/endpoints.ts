@@ -65,6 +65,16 @@ export const logout = async () => {
   }
 };
 
+//Send Email Verification OTP
+export const sendEmailVerificationOtp = async (values: { email: string }) => {
+  try {
+    const response = await endpoints.call("/api/auth/send-email-verification", "post", values);
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
 //Verify Email
 export const verifyEmail = async (values: { code: string; email: string }) => {
   try {

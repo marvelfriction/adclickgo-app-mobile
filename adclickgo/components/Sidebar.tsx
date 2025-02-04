@@ -19,7 +19,6 @@ const Sidebar: React.FC<SidebarProps> = ({ toggleSidebar }) => {
   // console.log(user)
 
     const handleLogout = async () => {
-      // console.log(AsyncStorage.getItem("token"))
       try {
         const response = await logout();
         console.log("Logout Info:", response);

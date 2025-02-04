@@ -55,12 +55,12 @@ export const logout = async () => {
   try {
     // Call logout API FIRST (while token is still available)
     const response = await endpoints.call("/api/logout", "post");
-    // THEN remove the token from client
-    removeToken();
+    // // THEN remove the token from client
+    // removeToken();
     return response;
   } catch (error) {
-    // Handle errors, but still remove the token locally
-    removeToken();
+    // // Handle errors, but still remove the token locally
+    // removeToken();
     throw error;
   }
 };

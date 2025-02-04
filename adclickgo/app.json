@@ -8,7 +8,7 @@
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "splash": {
-      "image": "./assets/images/splashscreen.png",
+      "image": "./assets/images/splashscreen-adclickgo.png",
       "resizeMode": "contain",
       "backgroundColor": "#69C52F"
     },

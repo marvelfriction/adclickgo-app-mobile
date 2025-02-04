@@ -4,15 +4,33 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import * as WebBrowser from "expo-web-browser";
 import { images } from "@/constants";
 import Modal from "react-native-modal";
+import { userDashboardData } from "@/services/endpoints";
 
 const Home = () => {
   const [isModalVisible, setModalVisible] = useState(true);
+  const [dashboardInfo, setDashboardInfo] = useState([])
   const [timeRemaining, setTimeRemaining] = useState(24 * 60 * 60); // 24 hours in seconds
 
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
 
+  // User Dashboard data
+  useEffect(() => {
+    const getUserDashboardData = async () => {
+      try {
+        const response = await userDashboardData();
+        if (response.success === true){
+          setDashboardInfo(response.data)
+          console.log(response.data)
+        }
+      } catch (error) {
+        alert(error)
+        console.log(error)
+      }
+    }
+    getUserDashboardData();
+  }, [])
   // Countdown timer logic
   useEffect(() => {
     const interval = setInterval(() => {

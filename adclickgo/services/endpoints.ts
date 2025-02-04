@@ -96,7 +96,7 @@ export const userDetails = async () => {
 };
 
 // User Dashboard
-export const userDashboard = async () => {
+export const userDashboardData = async () => {
   try {
     const response = await endpoints.call("/api/user-dashboard", "get");
     return response;

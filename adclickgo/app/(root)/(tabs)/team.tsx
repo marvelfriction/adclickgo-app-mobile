@@ -33,7 +33,7 @@ const Team = () => {
       {
         id: 5,
         title: "Event",
-        icon: icons.withdrawIcon,
+        icon: icons.eventIcon,
         url: "/events",
       },
     ];
@@ -67,7 +67,7 @@ const Team = () => {
               }}>
               <Image
                 source={item.icon}
-                style={{ width: 40, height: 40, marginBottom: 10 }}
+                style={{ width: 40, height: 40, marginBottom: 10, backgroundColor:"01796F" }}
               />
               <Text
                 style={{ fontSize: 14, color: "#01796F", textAlign: "center" }}>

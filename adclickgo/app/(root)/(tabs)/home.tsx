@@ -8,29 +8,85 @@ import { userDashboardData } from "@/services/endpoints";
 
 const Home = () => {
   const [isModalVisible, setModalVisible] = useState(true);
-  const [dashboardInfo, setDashboardInfo] = useState([])
+  interface DashboardInfo {
+    userDetails: {
+      balance: string;
+      pack_wallet: string;
+      tickets: string;
+      coin: string;
+      locked_balance: string;
+      unassigned_clicks: string;
+    };
+    activeAdpacks: string;
+    closedAdpacks: string;
+    adPackIncome: string;
+    adpackBonus: string;
+    raffleCount: string;
+    fastCash: string;
+    banners: { image_url: string }[];
+  }
+
+  const [dashboardInfo, setDashboardInfo] = useState<DashboardInfo | null>(null);
+  const [banners, setBanners] = useState<string[]>([]);
+  const [headBanner, setHeadBanner] = useState("");
   const [timeRemaining, setTimeRemaining] = useState(24 * 60 * 60); // 24 hours in seconds
 
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
 
-  // User Dashboard data
   useEffect(() => {
     const getUserDashboardData = async () => {
       try {
         const response = await userDashboardData();
-        if (response.success === true){
-          setDashboardInfo(response.data)
-          console.log(response.data)
+        if (response.success === true) {
+          setDashboardInfo(response.data);
+          // Extract image URLs from the banners object
+          const imageUrls = Object.values(
+            response.data.banners as { image_url: string }[]
+          ).map((banner) => banner.image_url);
+          // Set the banners state with only the image URLs
+          setBanners(imageUrls);
+          if (imageUrls.length > 0) {
+            setHeadBanner(imageUrls[0]);
+          }
+
+          console.log(response.data);
         }
       } catch (error) {
-        alert(error)
-        console.log(error)
+        alert(error);
+        console.log(error);
       }
-    }
+    };
+
     getUserDashboardData();
-  }, [])
+  }, []);
+
+  // Stats data mapping
+  const statsData = [
+    { label: "Balance", value: dashboardInfo?.userDetails?.balance || "0.00" },
+    {
+      label: "Pack Wallet",
+      value: dashboardInfo?.userDetails?.pack_wallet || "0",
+    },
+    { label: "Tickets", value: dashboardInfo?.userDetails?.tickets || "0" },
+    { label: "Coin", value: dashboardInfo?.userDetails?.coin || "0" },
+    {
+      label: "Locked Balance",
+      value: dashboardInfo?.userDetails?.locked_balance || "0.00",
+    },
+    {
+      label: "Unassigned Clicks",
+      value: dashboardInfo?.userDetails?.unassigned_clicks || "0",
+    },
+    { label: "Active Adpacks", value: dashboardInfo?.activeAdpacks || "0" },
+    { label: "Closed Adpacks", value: dashboardInfo?.closedAdpacks || "0" },
+    { label: "Adpack Income", value: dashboardInfo?.adPackIncome || "0.00" },
+    { label: "Adpack Bonus", value: dashboardInfo?.adpackBonus || "0.00" },
+    { label: "Raffle Count", value: dashboardInfo?.raffleCount || "0" },
+    { label: "Fast Cash", value: dashboardInfo?.fastCash || "0.00" },
+  ];
+
   // Countdown timer logic
   useEffect(() => {
     const interval = setInterval(() => {
@@ -176,13 +232,16 @@ const Home = () => {
         </Modal>
 
         {/* Head Banner */}
-        <TouchableOpacity onPress={toggleModal}>
-          <Image
-            source={images.dashboardImage0}
-            resizeMode="contain"
-            style={{ height: 120, width: 360, borderRadius: 10 }}
-          />
-        </TouchableOpacity>
+        {banners.map((banner, index) => (
+          <TouchableOpacity key={index} onPress={toggleModal}>
+            <Image
+              key={index}
+              source={{ uri: banner[0] }}
+              resizeMode="contain"
+              style={{ height: 120, width: 360, borderRadius: 10 }}
+            />
+          </TouchableOpacity>
+        ))}
 
         {/* Event Details */}
         <View
@@ -224,28 +283,11 @@ const Home = () => {
             marginTop: 20,
             justifyContent: "space-between",
           }}>
-          {[
-            { label: "Active Adpack", value: "183" },
-            { label: "Closed Adpack", value: "114" },
-            { label: "Deposit Amount", value: "$590" },
-            {
-              label: "Total Income Balance",
-              value: "$38,373.00",
-              highlight: true,
-            },
-            { label: "Adpack Bonus", value: "$9" },
-            { label: "Raffle Tickets", value: "11" },
-            { label: "Fast Cash Bonus", value: "$0" },
-            {
-              label: "Promotion Running",
-              value: "Spin and Win",
-              highlight: true,
-            },
-          ].map((item, index) => (
+          {statsData.map((item, index) => (
             <View
               key={index}
               style={{
-                backgroundColor: item.highlight ? "#E9F9EE" : "white",
+                backgroundColor: "#E9F9EE",// : "white",
                 padding: 15,
                 borderRadius: 10,
                 width: "47%",
@@ -312,7 +354,7 @@ const Home = () => {
               style={{
                 backgroundColor: "#DF1313",
                 paddingHorizontal: 8,
-                paddingVertical:5,
+                paddingVertical: 5,
                 borderRadius: 5,
               }}>
               <Text

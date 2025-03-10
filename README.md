@@ -57,5 +57,5 @@ Once you have moved into the correct folder you must install the dependencies be
 To start the project, run:
 
 ```bash
-  npm start
+  expo start r
 ```
